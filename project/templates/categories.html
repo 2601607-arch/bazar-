@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Product Categories — BazaarLink{% endblock %}
+{% block content %}
+<div class="container-main" style="padding: 32px 20px;">
+  <div class="card-box" style="margin-bottom: 20px;">
+    <h2 style="margin-bottom: 10px;">Product Categories</h2>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+      <a href="{{ url_for('categories') }}" class="{% if active_cat == 'all' %}btn-primary{% else %}btn-outline{% endif %}">All Products</a>
+      {% for cat in categories %}
+      <a href="{{ url_for('categories', cat=cat.slug) }}" class="{% if active_cat == cat.slug %}btn-primary{% else %}btn-outline{% endif %}">{{ cat.name }}</a>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="product-grid">
+    {% for product in products %}
+      {% include "components/product_card.html" %}
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

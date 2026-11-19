@@ -1,0 +1,6 @@
+{
+  "name": "BazaarLink — Multi-Vendor E-Commerce & Affiliate Marketplace",
+  "description": "Modern multi-vendor e-commerce marketplace inspired by Daraz with integrated 14% affiliate commission marketing, buyer, seller, and affiliate dashboards.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

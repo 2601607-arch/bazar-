@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Become an Affiliate Member — BazaarLink{% endblock %}
+{% block content %}
+<div class="container-main" style="padding: 40px 20px;">
+  <div class="card-box" style="max-width: 720px; margin: 0 auto;">
+    <h1>Become a BazaarLink Affiliate Member</h1>
+    <p style="color: var(--ink-muted);">
+      Earn a flat <strong>14% commission</strong> on every verified product referral. Share unique links on WhatsApp and Facebook, track clicks, and withdraw verified earnings from your wallet.
+    </p>
+    <div style="background: var(--bg-canvas); padding: 16px; border-radius: 8px; margin: 20px 0; font-family: 'JetBrains Mono', monospace;">
+      Example: Product Price = Rs. 5,000 → Commission (14%) = Rs. 700
+    </div>
+    <a href="{{ url_for('affiliate_signup') }}" class="btn-primary">Register as Affiliate Partner</a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Seller Dashboard — BazaarLink{% endblock %}
+{% block content %}
+<div class="container-main dashboard-shell">
+  <div class="dashboard-top">
+    <div>
+      <div style="font-size: 0.78rem; color: var(--ink-muted);">Home / Seller / Dashboard</div>
+      <h2 style="margin: 0;">Seller Dashboard</h2>
+    </div>
+    <a href="{{ url_for('seller_add_product') }}" class="btn-primary">+ Add New Product</a>
+  </div>
+  <div class="dashboard-grid">
+    <aside class="dashboard-sidebar">
+      <nav class="sidebar-nav">
+        <a href="{{ url_for('seller_dashboard') }}" class="active">Seller Dashboard</a>
+        <a href="{{ url_for('seller_add_product') }}">Add Product</a>
+        <a href="{{ url_for('seller_products') }}">Manage Products</a>
+        <a href="{{ url_for('seller_orders') }}">Seller Orders</a>
+        <a href="{{ url_for('seller_profile') }}">Seller Profile</a>
+      </nav>
+    </aside>
+    <div>
+      <div class="kpi-grid">
+        <div class="kpi-card"><div class="kpi-label">Total Products</div><div class="kpi-value">{{ products|length }}</div></div>
+        <div class="kpi-card"><div class="kpi-label">Total Orders</div><div class="kpi-value">4</div></div>
+        <div class="kpi-card"><div class="kpi-label">Total Sales</div><div class="kpi-value" style="color: var(--brand-orange);">Rs. 33,700</div></div>
+        <div class="kpi-card"><div class="kpi-label">Pending Orders</div><div class="kpi-value" style="color: var(--amber);">2</div></div>
+      </div>
+      <div class="card-box">
+        <h3>Seller Inventory Overview</h3>
+        <table class="data-table">
+          <thead><tr><th>Product</th><th>Price</th><th>Stock</th><th>14% Affiliate</th></tr></thead>
+          <tbody>
+            {% for p in products[:5] %}
+            <tr>
+              <td>{{ p.name }}</td>
+              <td>Rs. {{ "{:,}".format(p.price) }}</td>
+              <td>{{ p.stock }}</td>
+              <td style="color: var(--emerald);">Rs. {{ "{:,}".format(p.commission) }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

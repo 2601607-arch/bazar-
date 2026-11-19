@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Affiliate Signup — BazaarLink{% endblock %}
+{% block content %}
+<div class="container-main" style="max-width: 520px; padding: 48px 20px;">
+  <div class="card-box">
+    {% if new_affiliate_id %}
+      <h2>Affiliate Partner Activated</h2>
+      <p style="color: var(--ink-muted);">Your unique Affiliate ID is ready for sharing 14% referral links.</p>
+      <div style="background: var(--bg-canvas); padding: 16px; border-radius: 8px; margin: 16px 0;">
+        <div style="font-size: 0.78rem; color: var(--ink-muted);">Unique Affiliate ID</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 700; color: var(--brand-orange);">{{ new_affiliate_id }}</div>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <a href="{{ url_for('affiliate_dashboard') }}" class="btn-primary">Affiliate Dashboard</a>
+        <a href="{{ url_for('affiliate_wallet') }}" class="btn-outline">Commission Wallet</a>
+      </div>
+    {% else %}
+      <h2>Become an Affiliate Member</h2>
+      <p style="font-size: 0.875rem; color: var(--ink-muted); margin-bottom: 18px;">Earn 14% commission on every verified referral order.</p>
+      <form method="post" action="{{ url_for('affiliate_signup') }}">
+        <div class="form-group"><label>Full Name</label><input type="text" name="full_name" required class="form-control" /></div>
+        <div class="form-group"><label>Email</label><input type="email" name="email" required class="form-control" /></div>
+        <div class="form-group"><label>Password</label><input type="password" name="password" required class="form-control" /></div>
+        <div class="form-group"><label>Confirm Password</label><input type="password" name="confirm_password" required class="form-control" /></div>
+        <button type="submit" class="btn-primary" style="width: 100%;">Register &amp; Generate Affiliate ID</button>
+      </form>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

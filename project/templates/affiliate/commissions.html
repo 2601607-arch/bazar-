@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Commission History — BazaarLink{% endblock %}
+{% block content %}
+<div class="container-main dashboard-shell">
+  <div class="dashboard-top"><h2>Commission History</h2></div>
+  <div class="dashboard-grid">
+    <aside class="dashboard-sidebar">
+      <nav class="sidebar-nav">
+        <a href="{{ url_for('affiliate_dashboard') }}">Affiliate Dashboard</a>
+        <a href="{{ url_for('affiliate_referrals') }}">My Referrals</a>
+        <a href="{{ url_for('affiliate_wallet') }}">My Wallet</a>
+        <a href="{{ url_for('affiliate_commissions') }}" class="active">Commission History</a>
+        <a href="{{ url_for('affiliate_links') }}">My Affiliate Links</a>
+        <a href="{{ url_for('affiliate_profile') }}">Affiliate Profile</a>
+      </nav>
+    </aside>
+    <div class="card-box">
+      <table class="data-table">
+        <thead><tr><th>Commission ID</th><th>Order</th><th>Product</th><th>Sale Amount</th><th>14% Earn</th><th>Status</th><th>Notes</th></tr></thead>
+        <tbody>
+          {% for c in commissions %}
+          <tr>
+            <td>{{ c.id }}</td>
+            <td>{{ c.order_id }}</td>
+            <td>{{ c.product }}</td>
+            <td>Rs. {{ "{:,}".format(c.sale) }}</td>
+            <td style="color: var(--emerald); font-weight: 700;">Rs. {{ "{:,}".format(c.commission) }}</td>
+            <td><strong>{{ c.status }}</strong></td>
+            <td style="font-size: 0.78rem; color: var(--ink-muted);">{{ c.note }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

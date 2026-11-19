@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}My Affiliate Links — BazaarLink{% endblock %}
+{% block content %}
+<div class="container-main dashboard-shell">
+  <div class="dashboard-top"><h2>My Affiliate Links (ID: {{ affiliate_id }})</h2></div>
+  <div class="dashboard-grid">
+    <aside class="dashboard-sidebar">
+      <nav class="sidebar-nav">
+        <a href="{{ url_for('affiliate_dashboard') }}">Affiliate Dashboard</a>
+        <a href="{{ url_for('affiliate_referrals') }}">My Referrals</a>
+        <a href="{{ url_for('affiliate_wallet') }}">My Wallet</a>
+        <a href="{{ url_for('affiliate_commissions') }}">Commission History</a>
+        <a href="{{ url_for('affiliate_links') }}" class="active">My Affiliate Links</a>
+        <a href="{{ url_for('affiliate_profile') }}">Affiliate Profile</a>
+      </nav>
+    </aside>
+    <div class="card-box">
+      <table class="data-table">
+        <thead><tr><th>Product</th><th>Price</th><th>14% Commission</th><th>Referral URL</th><th>Share</th></tr></thead>
+        <tbody>
+          {% for p in products %}
+          <tr>
+            <td>{{ p.name }}</td>
+            <td>Rs. {{ "{:,}".format(p.price) }}</td>
+            <td style="color: var(--emerald); font-weight: 700;">Rs. {{ "{:,}".format(p.commission) }}</td>
+            <td><code>/product/{{ p.slug }}?ref={{ affiliate_id }}</code></td>
+            <td>
+              <button type="button" onclick="openShareModal('{{ p.name }}', '{{ p.slug }}', {{ p.price }}, '{{ affiliate_id }}')" class="btn-outline" style="padding: 4px 10px;">Share</button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

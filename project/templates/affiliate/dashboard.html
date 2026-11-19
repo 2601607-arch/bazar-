@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Affiliate Dashboard — BazaarLink{% endblock %}
+{% block content %}
+<div class="container-main dashboard-shell">
+  <div class="dashboard-top">
+    <div>
+      <div style="font-size: 0.78rem; color: var(--ink-muted);">Affiliate ID: <strong>{{ affiliate_id }}</strong> · 14% Rate</div>
+      <h2 style="margin: 0;">Affiliate Dashboard</h2>
+    </div>
+    <a href="{{ url_for('affiliate_links') }}" class="btn-primary">My Affiliate Links</a>
+  </div>
+  <div class="dashboard-grid">
+    <aside class="dashboard-sidebar">
+      <nav class="sidebar-nav">
+        <a href="{{ url_for('affiliate_dashboard') }}" class="active">Affiliate Dashboard</a>
+        <a href="{{ url_for('affiliate_referrals') }}">My Referrals</a>
+        <a href="{{ url_for('affiliate_wallet') }}">My Wallet</a>
+        <a href="{{ url_for('affiliate_commissions') }}">Commission History</a>
+        <a href="{{ url_for('affiliate_links') }}">My Affiliate Links</a>
+        <a href="{{ url_for('affiliate_profile') }}">Affiliate Profile</a>
+      </nav>
+    </aside>
+    <div>
+      <div class="kpi-grid" style="grid-template-columns: repeat(3, minmax(0, 1fr));">
+        <div class="kpi-card"><div class="kpi-label">Total Clicks</div><div class="kpi-value">1,213</div></div>
+        <div class="kpi-card"><div class="kpi-label">Total Referrals</div><div class="kpi-value">33</div></div>
+        <div class="kpi-card"><div class="kpi-label">Successful Purchases</div><div class="kpi-value">{{ commissions|length }}</div></div>
+        <div class="kpi-card"><div class="kpi-label">Pending Commission (Unverified)</div><div class="kpi-value" style="color: var(--amber);">Rs. {{ "{:,}".format(pending) }}</div></div>
+        <div class="kpi-card"><div class="kpi-label">Available Wallet Balance</div><div class="kpi-value" style="color: var(--emerald);">Rs. {{ "{:,}".format(available) }}</div></div>
+        <div class="kpi-card"><div class="kpi-label">Total Earnings</div><div class="kpi-value" style="color: var(--brand-orange);">Rs. {{ "{:,}".format(total_earnings) }}</div></div>
+      </div>
+
+      <div class="card-box">
+        <h3>Commission History</h3>
+        <table class="data-table">
+          <thead><tr><th>ID</th><th>Product</th><th>Sale</th><th>14% Earn</th><th>Status</th><th>Verification</th></tr></thead>
+          <tbody>
+            {% for c in commissions %}
+            <tr>
+              <td>{{ c.id }}</td>
+              <td>{{ c.product }}</td>
+              <td>Rs. {{ "{:,}".format(c.sale) }}</td>
+              <td style="color: var(--emerald); font-weight: 700;">Rs. {{ "{:,}".format(c.commission) }}</td>
+              <td><strong>{{ c.status }}</strong></td>
+              <td style="font-size: 0.78rem; color: var(--ink-muted);">{{ c.note }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

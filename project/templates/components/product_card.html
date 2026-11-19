@@ -1,0 +1,29 @@
+<article class="product-card">
+  <a href="{{ url_for('product_detail', slug=product.slug) }}" class="product-thumb">
+    <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}" />
+  </a>
+  <div class="product-body">
+    <div class="product-meta">{{ product.category }} · {{ product.seller_name }}</div>
+    <a href="{{ url_for('product_detail', slug=product.slug) }}" class="product-title">{{ product.name }}</a>
+    <div class="product-price-row">
+      <span class="price-current">Rs. {{ "{:,}".format(product.price) }}</span>
+      <span class="price-old">Rs. {{ "{:,}".format(product.original_price) }}</span>
+      <span style="font-size: 0.75rem; font-weight: 600;">-{{ product.discount }}%</span>
+    </div>
+    <div style="font-size: 0.78rem; color: #52525b; margin-bottom: 8px;">
+      ★ {{ product.rating }} ({{ product.reviews }} reviews)
+    </div>
+    <div class="affiliate-row">
+      <span>14% Affiliate Earn</span>
+      <span class="affiliate-earn">Rs. {{ "{:,}".format(product.commission) }}</span>
+    </div>
+    <div class="card-actions">
+      <button type="button" onclick="addToCart('{{ product.name }}', {{ product.price }}, '{{ product.slug }}')" class="btn-primary">
+        Add to Cart
+      </button>
+      <button type="button" onclick="openShareModal('{{ product.name }}', '{{ product.slug }}', {{ product.price }}, '{{ affiliate_id }}')" class="btn-outline">
+        Share
+      </button>
+    </div>
+  </div>
+</article>

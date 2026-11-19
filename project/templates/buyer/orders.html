@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}My Orders — BazaarLink{% endblock %}
+{% block content %}
+<div class="container-main dashboard-shell">
+  <div class="dashboard-top"><h2>My Orders</h2></div>
+  <div class="dashboard-grid">
+    <aside class="dashboard-sidebar">
+      <nav class="sidebar-nav">
+        <a href="{{ url_for('buyer_dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('buyer_orders') }}" class="active">My Orders</a>
+        <a href="{{ url_for('buyer_wishlist') }}">Wishlist</a>
+        <a href="{{ url_for('buyer_cart') }}">Shopping Cart</a>
+        <a href="{{ url_for('buyer_settings') }}">Account Settings</a>
+      </nav>
+    </aside>
+    <div class="card-box">
+      <table class="data-table">
+        <thead><tr><th>Order</th><th>Items</th><th>Date</th><th>Status</th><th>Total</th></tr></thead>
+        <tbody>
+          <tr><td>ORD-8915</td><td>Aurora Flow Sneakers, Vitamin C Kit</td><td>2026-11-17</td><td>Shipped</td><td>Rs. 10,700</td></tr>
+          <tr><td>ORD-8842</td><td>Acoustic Studio ANC Headphones</td><td>2026-11-14</td><td>Delivered</td><td>Rs. 5,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

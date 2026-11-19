@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Buyer Dashboard — BazaarLink{% endblock %}
+{% block content %}
+<div class="container-main dashboard-shell">
+  <div class="dashboard-top">
+    <div>
+      <div style="font-size: 0.78rem; color: var(--ink-muted);">Home / Buyer / Dashboard</div>
+      <h2 style="margin: 0;">Buyer Dashboard</h2>
+    </div>
+    <a href="{{ url_for('buyer_settings') }}" class="btn-primary">Become a Seller</a>
+  </div>
+  <div class="dashboard-grid">
+    <aside class="dashboard-sidebar">
+      <nav class="sidebar-nav">
+        <a href="{{ url_for('buyer_dashboard') }}" class="active">Dashboard</a>
+        <a href="{{ url_for('buyer_orders') }}">My Orders</a>
+        <a href="{{ url_for('buyer_wishlist') }}">Wishlist</a>
+        <a href="{{ url_for('buyer_cart') }}">Shopping Cart</a>
+        <a href="{{ url_for('buyer_settings') }}">Account Settings</a>
+      </nav>
+    </aside>
+    <div>
+      <div class="kpi-grid">
+        <div class="kpi-card"><div class="kpi-label">Total Orders</div><div class="kpi-value">2</div></div>
+        <div class="kpi-card"><div class="kpi-label">Cart Items</div><div class="kpi-value">1</div></div>
+        <div class="kpi-card"><div class="kpi-label">Wishlist</div><div class="kpi-value">2</div></div>
+        <div class="kpi-card"><div class="kpi-label">Total Spent</div><div class="kpi-value">Rs. 15,700</div></div>
+      </div>
+      <div class="card-box">
+        <h3>Recent Orders</h3>
+        <table class="data-table">
+          <thead><tr><th>Order ID</th><th>Date</th><th>Status</th><th>Total</th></tr></thead>
+          <tbody>
+            <tr><td>ORD-8915</td><td>2026-11-17</td><td>Shipped</td><td>Rs. 10,700</td></tr>
+            <tr><td>ORD-8842</td><td>2026-11-14</td><td>Delivered</td><td>Rs. 5,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

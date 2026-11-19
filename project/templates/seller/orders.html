@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Seller Orders — BazaarLink{% endblock %}
+{% block content %}
+<div class="container-main dashboard-shell">
+  <div class="dashboard-top"><h2>Seller Orders</h2></div>
+  <div class="dashboard-grid">
+    <aside class="dashboard-sidebar">
+      <nav class="sidebar-nav">
+        <a href="{{ url_for('seller_dashboard') }}">Seller Dashboard</a>
+        <a href="{{ url_for('seller_add_product') }}">Add Product</a>
+        <a href="{{ url_for('seller_products') }}">Manage Products</a>
+        <a href="{{ url_for('seller_orders') }}" class="active">Seller Orders</a>
+        <a href="{{ url_for('seller_profile') }}">Seller Profile</a>
+      </nav>
+    </aside>
+    <div class="card-box">
+      <table class="data-table">
+        <thead><tr><th>Order</th><th>Customer</th><th>Product</th><th>Amount</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>ORD-9012</td><td>Bilal Ahmed</td><td>Acoustic Studio ANC Headphones</td><td>Rs. 10,000</td><td>Pending</td></tr>
+          <tr><td>ORD-8991</td><td>Usman Khalid</td><td>Acoustic Studio ANC Headphones</td><td>Rs. 5,000</td><td>Shipped</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

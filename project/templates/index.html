@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% block title %}BazaarLink — Online Shopping & Affiliate Marketplace{% endblock %}
+{% block content %}
+<section class="hero-band">
+  <div class="container-main hero-grid">
+    <aside class="category-rail">
+      <div style="font-size: 0.78rem; font-weight: 600; color: #52525b; padding: 6px 10px;">Categories</div>
+      <ul>
+        {% for cat in categories %}
+        <li>
+          <a href="{{ url_for('categories', cat=cat.slug) }}">
+            <span>{{ cat.name }}</span>
+            <span>{{ cat.count }}</span>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </aside>
+
+    <div class="hero-slider">
+      <div class="hero-slide active">
+        <img src="{{ url_for('static', filename='images/banners/banner_tech.jpg') }}" alt="Tech Flash Deals" />
+        <div class="hero-scrim"></div>
+        <div class="hero-content">
+          <div class="hero-kicker">Flagship Audio &amp; Smart Tech</div>
+          <h1 style="font-size: 2rem; line-height: 1.2;">Precision Sound &amp; Everyday Tech at Direct Vendor Prices</h1>
+          <p style="font-size: 0.95rem; color: #e4e4e7;">Shop verified sellers and earn 14% affiliate commission on every referral purchase.</p>
+          <a href="{{ url_for('categories', cat='electronics') }}" class="btn-primary">Explore Flash Deals</a>
+        </div>
+      </div>
+
+      <div class="hero-slide">
+        <img src="{{ url_for('static', filename='images/banners/banner_home.jpg') }}" alt="Modern Home Living" />
+        <div class="hero-scrim"></div>
+        <div class="hero-content">
+          <div class="hero-kicker">Modern Home &amp; Workspace</div>
+          <h1 style="font-size: 2rem; line-height: 1.2;">Curated Espresso &amp; Architectural Home Essentials</h1>
+          <p style="font-size: 0.95rem; color: #e4e4e7;">Direct-from-brand appliances and task lighting with fast nationwide delivery.</p>
+          <a href="{{ url_for('categories', cat='home-living') }}" class="btn-primary">Shop Home &amp; Living</a>
+        </div>
+      </div>
+
+      <div style="position: absolute; bottom: 16px; right: 16px; z-index: 5; display: flex; gap: 8px;">
+        <button id="sliderPrev" type="button" class="btn-outline" style="padding: 6px 12px;">Prev</button>
+        <button id="sliderNext" type="button" class="btn-outline" style="padding: 6px 12px;">Next</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container-main section-block">
+  <div class="section-header">
+    <h2>Featured Categories</h2>
+    <a href="{{ url_for('categories') }}" style="color: var(--brand-orange); font-weight: 600; font-size: 0.875rem;">View All</a>
+  </div>
+  <div class="category-grid">
+    {% for cat in categories %}
+    <a href="{{ url_for('categories', cat=cat.slug) }}" class="category-tile">
+      <img src="{{ url_for('static', filename=cat.image) }}" alt="{{ cat.name }}" />
+      <div class="category-tile-body">{{ cat.name }}</div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="container-main section-block">
+  <div class="section-header">
+    <h2>Flash Deals</h2>
+    <a href="{{ url_for('categories') }}" style="color: var(--brand-orange); font-weight: 600; font-size: 0.875rem;">Shop All Deals</a>
+  </div>
+  <div class="product-grid">
+    {% for product in flash_deals %}
+      {% include "components/product_card.html" %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="container-main section-block">
+  <div class="section-header" style="flex-wrap: wrap; gap: 12px;">
+    <h2>Marketplace Highlights</h2>
+    <div style="display: flex; gap: 8px;">
+      <button type="button" data-tab-target="recommended" class="btn-primary">Recommended Products</button>
+      <button type="button" data-tab-target="bestselling" class="btn-outline">Best Selling</button>
+      <button type="button" data-tab-target="new" class="btn-outline">New Arrivals</button>
+    </div>
+  </div>
+
+  <div class="product-grid" data-tab-panel="recommended">
+    {% for product in recommended %}
+      {% include "components/product_card.html" %}
+    {% endfor %}
+  </div>
+  <div class="product-grid" data-tab-panel="bestselling" style="display: none;">
+    {% for product in bestselling %}
+      {% include "components/product_card.html" %}
+    {% endfor %}
+  </div>
+  <div class="product-grid" data-tab-panel="new" style="display: none;">
+    {% for product in new_arrivals %}
+      {% include "components/product_card.html" %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="container-main section-block">
+  <div class="affiliate-cta-box">
+    <div>
+      <div style="color: var(--brand-orange); font-size: 0.8rem; font-weight: 700; margin-bottom: 6px;">Affiliate Partner Program</div>
+      <h2>Become a Member &amp; Earn 14% Commission</h2>
+      <p style="color: var(--ink-muted); font-size: 0.95rem;">
+        Register for a unique Affiliate ID, share any product link with <code>?ref=YOUR_ID</code>, and earn 14% on every verified purchase.
+      </p>
+      <div style="display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap;">
+        <a href="{{ url_for('affiliate_signup') }}" class="btn-primary">Become an Affiliate Member</a>
+        <a href="{{ url_for('affiliate_dashboard') }}" class="btn-outline">Affiliate Dashboard</a>
+      </div>
+    </div>
+    <div style="background: var(--bg-canvas); padding: 20px; border-radius: 10px; border: 1px solid var(--border-hairline);">
+      <div style="font-weight: 700; margin-bottom: 8px;">Commission Formula</div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem;">
+        Product Price: Rs. 5,000<br />
+        Commission (14%): <strong style="color: var(--emerald);">Rs. 700</strong>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

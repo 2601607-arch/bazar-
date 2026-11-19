@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}My Wallet — BazaarLink{% endblock %}
+{% block content %}
+<div class="container-main dashboard-shell">
+  <div class="dashboard-top"><h2>Commission Wallet</h2></div>
+  <div class="dashboard-grid">
+    <aside class="dashboard-sidebar">
+      <nav class="sidebar-nav">
+        <a href="{{ url_for('affiliate_dashboard') }}">Affiliate Dashboard</a>
+        <a href="{{ url_for('affiliate_referrals') }}">My Referrals</a>
+        <a href="{{ url_for('affiliate_wallet') }}" class="active">My Wallet</a>
+        <a href="{{ url_for('affiliate_commissions') }}">Commission History</a>
+        <a href="{{ url_for('affiliate_links') }}">My Affiliate Links</a>
+        <a href="{{ url_for('affiliate_profile') }}">Affiliate Profile</a>
+      </nav>
+    </aside>
+    <div>
+      <div class="kpi-grid" style="grid-template-columns: repeat(3, minmax(0, 1fr));">
+        <div class="kpi-card">
+          <div class="kpi-label">Pending (Not Withdrawable)</div>
+          <div class="kpi-value" style="color: var(--amber);">Rs. {{ "{:,}".format(pending) }}</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Approved (Clearing)</div>
+          <div class="kpi-value">Rs. {{ "{:,}".format(approved) }}</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Available (Withdrawable)</div>
+          <div class="kpi-value" style="color: var(--emerald);">Rs. {{ "{:,}".format(available) }}</div>
+        </div>
+      </div>
+      <div class="card-box">
+        <h3>Request Demo Payout (Available Balance Only)</h3>
+        <p style="font-size: 0.85rem; color: var(--ink-muted);">Pending and Approved commissions cannot be withdrawn until purchase verification completes.</p>
+        <button type="button" onclick="showToast('Demo payout requested for Rs. {{ "{:,}".format(available) }}')" class="btn-primary">Withdraw Available Rs. {{ "{:,}".format(available) }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

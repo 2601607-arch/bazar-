@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Shopping Cart — BazaarLink{% endblock %}
+{% block content %}
+<div class="container-main dashboard-shell">
+  <div class="dashboard-top"><h2>Shopping Cart</h2></div>
+  <div class="dashboard-grid">
+    <aside class="dashboard-sidebar">
+      <nav class="sidebar-nav">
+        <a href="{{ url_for('buyer_dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('buyer_orders') }}">My Orders</a>
+        <a href="{{ url_for('buyer_wishlist') }}">Wishlist</a>
+        <a href="{{ url_for('buyer_cart') }}" class="active">Shopping Cart</a>
+        <a href="{{ url_for('buyer_settings') }}">Account Settings</a>
+      </nav>
+    </aside>
+    <div class="card-box">
+      <h3>Cart Summary</h3>
+      {% for item in cart_items %}
+      <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f4f4f5;">
+        <span>{{ item.product.name }} (Qty {{ item.qty }})</span>
+        <strong>Rs. {{ "{:,}".format(item.product.price * item.qty) }}</strong>
+      </div>
+      {% endfor %}
+      <div style="margin-top: 16px;">
+        <button type="button" onclick="showToast('Demo order placed successfully')" class="btn-primary">Place Demo Order</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

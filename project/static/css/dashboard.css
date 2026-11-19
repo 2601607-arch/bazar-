@@ -1,0 +1,97 @@
+/* Buyer, Seller, and Affiliate Dashboard Layout */
+.dashboard-shell {
+  padding: 28px 0;
+}
+
+.dashboard-top {
+  background: #ffffff;
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-md);
+  padding: 18px 22px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.dashboard-sidebar {
+  background: #ffffff;
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar-nav a {
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #3f3f46;
+}
+
+.sidebar-nav a.active,
+.sidebar-nav a:hover {
+  background: rgba(248, 86, 6, 0.08);
+  color: var(--brand-orange);
+  font-weight: 600;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.kpi-card {
+  background: #ffffff;
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-md);
+  padding: 18px;
+}
+
+.kpi-label {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+}
+
+.kpi-value {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1.45rem;
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.data-table th {
+  text-align: left;
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  border-bottom: 1px solid var(--border-hairline);
+  padding: 10px 8px;
+}
+
+.data-table td {
+  padding: 12px 8px;
+  border-bottom: 1px solid #f4f4f5;
+}

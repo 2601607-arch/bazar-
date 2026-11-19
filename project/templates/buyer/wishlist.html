@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Wishlist — BazaarLink{% endblock %}
+{% block content %}
+<div class="container-main dashboard-shell">
+  <div class="dashboard-top"><h2>My Wishlist</h2></div>
+  <div class="dashboard-grid">
+    <aside class="dashboard-sidebar">
+      <nav class="sidebar-nav">
+        <a href="{{ url_for('buyer_dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('buyer_orders') }}">My Orders</a>
+        <a href="{{ url_for('buyer_wishlist') }}" class="active">Wishlist</a>
+        <a href="{{ url_for('buyer_cart') }}">Shopping Cart</a>
+        <a href="{{ url_for('buyer_settings') }}">Account Settings</a>
+      </nav>
+    </aside>
+    <div class="product-grid" style="grid-template-columns: repeat(2, minmax(0, 1fr));">
+      {% for product in products %}
+        {% include "components/product_card.html" %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
